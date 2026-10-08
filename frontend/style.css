@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root {
   --bg: #ffffff;
   --surface: #f7f7f9;
@@ -18,12 +14,11 @@
   --danger: #d34b4b;
   --radius: 18px;
   --shadow: 0 16px 45px rgba(23, 20, 45, 0.08);
+  --icon: #4b4b55;
+  --icon-bg: #f5f4fa;
 }
 
-/* =========================================================
-   RESET
-========================================================= */
-
+/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -64,10 +59,7 @@ img {
   display: none !important;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
-
+/* HEADER */
 .topbar {
   height: 76px;
   border-bottom: 1px solid rgba(20, 20, 25, 0.08);
@@ -137,15 +129,35 @@ img {
 
 .mobile-menu {
   display: none;
+  position: relative;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   border: 0;
-  background: none;
-  font-size: 23px;
+  background: transparent;
+  font-size: 0;
+  align-items: center;
+  justify-content: center;
 }
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+.mobile-menu::before {
+  content: "";
+  width: 18px;
+  height: 12px;
+  border-top: 2px solid var(--icon);
+  border-bottom: 2px solid var(--icon);
+}
 
+.mobile-menu::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: var(--icon);
+  border-radius: 2px;
+}
+
+/* BUTTONS */
 .btn {
   border: 0;
   border-radius: 11px;
@@ -213,10 +225,7 @@ img {
   width: 100%;
 }
 
-/* =========================================================
-   HERO
-========================================================= */
-
+/* HERO */
 .hero {
   position: relative;
   overflow: hidden;
@@ -231,13 +240,12 @@ img {
   left: 50%;
   top: -390px;
   transform: translateX(-50%);
-  background:
-    radial-gradient(
-      circle,
-      #eeeaff 0,
-      #f7f6ff 35%,
-      transparent 70%
-    );
+  background: radial-gradient(
+    circle,
+    #eeeaff 0,
+    #f7f6ff 35%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -317,8 +325,34 @@ h3 {
 }
 
 .search-shell > span {
-  font-size: 24px;
-  color: #888;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  font-size: 0 !important;
+  position: relative;
+}
+
+.search-shell > span::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #777;
+  border-radius: 50%;
+  left: 2px;
+  top: 2px;
+}
+
+.search-shell > span::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background: #777;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  left: 13px;
+  top: 14px;
 }
 
 .search-shell input {
@@ -348,10 +382,23 @@ h3 {
   margin-top: 17px;
 }
 
-/* =========================================================
-   STATS
-========================================================= */
+.trust span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
+.trust span:first-child::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  background: var(--accent);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+/* STATS */
 .stats {
   border-bottom: 1px solid var(--line);
 }
@@ -383,10 +430,7 @@ h3 {
   margin-top: 3px;
 }
 
-/* =========================================================
-   SECTIONS
-========================================================= */
-
+/* SECTIONS */
 .section {
   padding: 85px 0;
 }
@@ -410,10 +454,7 @@ h3 {
   color: var(--muted);
 }
 
-/* =========================================================
-   TOOLBAR
-========================================================= */
-
+/* TOOLBAR */
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -456,21 +497,23 @@ h3 {
   outline: none;
 }
 
-/* =========================================================
-   PROMPT GRID
-========================================================= */
-
+/* PROMPT GRID */
 .prompt-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: block;
+  column-count: 3;
+  column-gap: 20px;
 }
 
-/* =========================================================
-   PROMPT CARD
-========================================================= */
-
+/* PROMPT CARD */
 .prompt-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
+  vertical-align: top;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  height: auto !important;
+
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
@@ -486,58 +529,43 @@ h3 {
   box-shadow: var(--shadow);
 }
 
-/* =========================================================
-   CARD IMAGE
-   IMPORTANT: NO CROPPING
-========================================================= */
-
+/* CARD IMAGE */
 .card-media {
-  width: 100%;
-  height: 300px;
-  background: #f5f5f7;
   position: relative;
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/*
-  The old version used:
-
-  object-fit: cover;
-
-  That was cutting the top of the image.
-  Now we use contain so the entire image stays visible.
-*/
-
-.card-media img {
   width: 100%;
-  height: 100%;
-  object-fit: contain !important;
-  object-position: center center !important;
-  display: block;
+  height: auto !important;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
   background: #f5f5f7;
+  display: block;
+  line-height: 0;
 }
 
-/*
-  If JavaScript creates images with another class,
-  this makes sure those images are also not cropped.
-*/
-
+.card-media img,
+.prompt-card .card-media > img,
 .prompt-card img {
-  object-fit: contain !important;
-  object-position: center center !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: initial !important;
+  object-position: initial !important;
 }
 
 .media-placeholder {
-  height: 100%;
   width: 100%;
+  min-height: 220px;
   display: grid;
   place-items: center;
   font-size: 48px;
   color: #b6aaff;
+  background: #f5f5f7;
 }
 
 .type-pill {
@@ -549,13 +577,11 @@ h3 {
   border-radius: 999px;
   font-size: 11px;
   font-weight: 800;
-  z-index: 2;
+  line-height: 1.5;
+  z-index: 5;
 }
 
-/* =========================================================
-   CARD BODY
-========================================================= */
-
+/* CARD BODY */
 .card-body {
   padding: 17px;
 }
@@ -580,8 +606,11 @@ h3 {
   margin: 10px 0;
 
   display: -webkit-box;
+  display: box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
+  box-orient: vertical;
 
   overflow: hidden;
 }
@@ -595,16 +624,16 @@ h3 {
   font-size: 12px;
 
   display: -webkit-box;
+  display: box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
+  box-orient: vertical;
 
   overflow: hidden;
 }
 
-/* =========================================================
-   CARD FOOTER
-========================================================= */
-
+/* CARD FOOTER */
 .card-footer {
   display: flex;
   align-items: center;
@@ -625,10 +654,7 @@ h3 {
   flex-shrink: 0;
 }
 
-/* =========================================================
-   LIKE / COPY BUTTONS
-========================================================= */
-
+/* ACTION BUTTONS */
 .action-btn {
   display: inline-flex;
   align-items: center;
@@ -675,17 +701,44 @@ h3 {
   transform: none;
 }
 
-/* LIKE */
-
 .like-btn {
   min-width: 82px;
 }
 
 .like-btn .like-icon {
-  font-size: 16px;
-  line-height: 1;
+  display: inline-block;
+  width: 17px;
+  height: 15px;
+  font-size: 0 !important;
+  position: relative;
   color: #777;
-  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.like-btn .like-icon::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 3px;
+  top: 2px;
+  border-left: 1.8px solid currentColor;
+  border-bottom: 1.8px solid currentColor;
+  transform: rotate(-45deg);
+  border-radius: 0 0 0 3px;
+}
+
+.like-btn .like-icon::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  left: 1px;
+  top: 1px;
+  border: 1.8px solid currentColor;
+  border-bottom: 0;
+  border-right: 0;
+  border-radius: 7px 0 0 0;
+  transform: rotate(45deg);
 }
 
 .like-btn:hover .like-icon {
@@ -703,10 +756,21 @@ h3 {
   transform: scale(1.08);
 }
 
-/* COPY */
-
 .copy-btn {
   min-width: 86px;
+}
+
+.copy-btn::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border: 1.6px solid currentColor;
+  border-radius: 3px;
+  box-shadow:
+    4px -4px 0 -2px #fff,
+    4px -4px 0 0 currentColor;
+  box-sizing: border-box;
 }
 
 .copy-btn:hover {
@@ -719,10 +783,7 @@ h3 {
   color: var(--success);
 }
 
-/* =========================================================
-   CATEGORIES
-========================================================= */
-
+/* CATEGORY */
 .category-section {
   background: #fafafd;
   border-top: 1px solid var(--line);
@@ -751,8 +812,134 @@ h3 {
 }
 
 .cat-icon {
-  font-size: 24px;
-  margin-bottom: 22px;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 18px;
+  font-size: 0 !important;
+  position: relative;
+  border-radius: 11px;
+  background: var(--icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-icon::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 1.8px solid var(--accent);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.cat-icon::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 1.8px solid var(--accent);
+  border-radius: 50%;
+}
+
+.category-card:nth-child(2) .cat-icon::before {
+  border-radius: 50%;
+}
+
+.category-card:nth-child(3) .cat-icon::before {
+  border-radius: 4px 9px 4px 9px;
+}
+
+.category-card:nth-child(4) .cat-icon::before {
+  transform: rotate(45deg);
+}
+
+.category-card:nth-child(5) .cat-icon::before {
+  border-radius: 9px;
+}
+
+.category-card:nth-child(6) .cat-icon::before {
+  width: 20px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.category-card:nth-child(7) .cat-icon::before {
+  width: 14px;
+  height: 20px;
+  border-radius: 8px;
+}
+
+.category-card:nth-child(8) .cat-icon::before {
+  border-radius: 3px;
+  border-width: 2px;
+}
+
+.category-card:nth-child(9) .cat-icon::before {
+  width: 20px;
+  height: 12px;
+  border-radius: 10px 10px 3px 3px;
+}
+
+.category-card:nth-child(10) .cat-icon::before {
+  border-radius: 50% 50% 4px 4px;
+}
+
+.category-card:nth-child(11) .cat-icon::before {
+  width: 16px;
+  height: 16px;
+  transform: rotate(30deg);
+}
+
+.category-card:nth-child(12) .cat-icon::before {
+  width: 20px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.category-card:nth-child(13) .cat-icon::before {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border-style: dashed;
+}
+
+.category-card:nth-child(14) .cat-icon::before {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.category-card:nth-child(15) .cat-icon::before {
+  width: 16px;
+  height: 20px;
+  border-radius: 10px 10px 4px 4px;
+}
+
+.category-card:nth-child(16) .cat-icon::before {
+  width: 20px;
+  height: 15px;
+  border-radius: 50% 50% 4px 4px;
+}
+
+.category-card:nth-child(17) .cat-icon::before {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  transform: rotate(45deg);
+}
+
+.category-card:nth-child(18) .cat-icon::before {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border-style: dashed;
+}
+
+.category-card:nth-child(19) .cat-icon::before {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px 50% 6px 50%;
 }
 
 .category-card b {
@@ -766,10 +953,7 @@ h3 {
   margin-top: 4px;
 }
 
-/* =========================================================
-   CTA
-========================================================= */
-
+/* CTA */
 .cta-section {
   padding: 75px 0;
 }
@@ -804,10 +988,13 @@ h3 {
   color: #aa98ff;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+.cta-card .btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 
+/* FOOTER */
 footer {
   border-top: 1px solid var(--line);
   padding: 45px 0 20px;
@@ -853,20 +1040,14 @@ footer {
   font-size: 12px;
 }
 
-/* =========================================================
-   MODALS
-========================================================= */
-
+/* MODALS */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-
   background: rgba(12, 12, 16, 0.5);
   backdrop-filter: blur(5px);
-
   z-index: 100;
-
   place-items: center;
   padding: 20px;
 }
@@ -880,11 +1061,8 @@ footer {
   background: #fff;
   border-radius: 22px;
   padding: 30px;
-
   position: relative;
-
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
-
   max-height: 92vh;
   overflow: auto;
 }
@@ -897,18 +1075,34 @@ footer {
   position: absolute;
   right: 17px;
   top: 15px;
-
   border: 0;
   background: #f4f4f6;
-
   width: 32px;
   height: 32px;
-
   border-radius: 50%;
-
-  font-size: 21px;
-
+  font-size: 0 !important;
   transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close::before,
+.modal-close::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 1.8px;
+  background: #555;
+  border-radius: 2px;
+}
+
+.modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-close::after {
+  transform: rotate(-45deg);
 }
 
 .modal-close:hover {
@@ -919,18 +1113,34 @@ footer {
 .modal-icon {
   width: 44px;
   height: 44px;
-
   border-radius: 13px;
-
   background: var(--dark);
   color: #fff;
-
   display: grid;
   place-items: center;
-
-  font: 800 20px Manrope, Arial, sans-serif;
-
+  font-size: 0 !important;
+  position: relative;
   margin-bottom: 18px;
+}
+
+.modal-icon::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border: 1.7px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+}
+
+.modal-icon::after {
+  content: "";
+  width: 20px;
+  height: 10px;
+  border: 1.7px solid #fff;
+  border-radius: 12px 12px 5px 5px;
+  position: absolute;
+  bottom: 7px;
 }
 
 .modal-card h3 {
@@ -945,10 +1155,7 @@ footer {
   font-size: 13px;
 }
 
-/* =========================================================
-   AUTH TABS
-========================================================= */
-
+/* AUTH */
 .tabs {
   display: flex;
   background: #f5f5f7;
@@ -961,11 +1168,8 @@ footer {
   flex: 1;
   border: 0;
   background: transparent;
-
   padding: 9px;
-
   border-radius: 7px;
-
   color: #777;
   font-weight: 700;
 }
@@ -976,24 +1180,15 @@ footer {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
 
-/* =========================================================
-   FORM
-========================================================= */
-
+/* FORMS */
 .field {
   width: 100%;
-
   border: 1px solid #dedee5;
   background: #fff;
-
   border-radius: 10px;
-
   padding: 11px 12px;
-
   outline: 0;
-
   margin-top: 6px;
-
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -1035,10 +1230,7 @@ footer {
   min-height: 17px;
 }
 
-/* =========================================================
-   ACCOUNT
-========================================================= */
-
+/* ACCOUNT */
 .account-actions {
   display: grid;
   gap: 10px;
@@ -1061,9 +1253,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-
   padding: 12px;
-
   border: 1px solid var(--line);
   border-radius: 11px;
 }
@@ -1088,34 +1278,21 @@ footer {
   font-size: 12px;
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
-
+/* TOAST */
 .toast {
   position: fixed;
-
   right: 24px;
   bottom: 24px;
-
   background: #17171a;
   color: #fff;
-
   padding: 12px 16px;
-
   border-radius: 10px;
-
   box-shadow: var(--shadow);
-
   opacity: 0;
   transform: translateY(10px);
-
   pointer-events: none;
-
   transition: 0.25s;
-
   z-index: 200;
-
   font-size: 13px;
 }
 
@@ -1124,20 +1301,13 @@ footer {
   transform: none;
 }
 
-/* =========================================================
-   EMPTY / SKELETON
-========================================================= */
-
+/* EMPTY */
 .empty {
   grid-column: 1 / -1;
-
   text-align: center;
-
   border: 1px dashed #dcdce4;
   border-radius: 18px;
-
   padding: 55px 20px;
-
   color: #777;
 }
 
@@ -1149,17 +1319,13 @@ footer {
 .skeleton {
   height: 360px;
   border-radius: 18px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #f5f5f7 25%,
-      #fafafa 50%,
-      #f5f5f7 75%
-    );
-
+  background: linear-gradient(
+    90deg,
+    #f5f5f7 25%,
+    #fafafa 50%,
+    #f5f5f7 75%
+  );
   background-size: 200% 100%;
-
   animation: shine 1.2s infinite;
 }
 
@@ -1169,19 +1335,27 @@ footer {
   }
 }
 
-/* =========================================================
-   TABLET
-========================================================= */
+/* ADD BUTTON ICON */
+#addTopBtn,
+#sectionAdd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 
+#addTopBtn::first-letter,
+#sectionAdd::first-letter {
+  font-size: 0;
+}
+
+/* RESPONSIVE */
 @media (max-width: 950px) {
-
   .nav-links {
     display: none;
   }
 
   .mobile-menu {
-    display: block;
-    margin-left: auto;
+    display: flex;
   }
 
   .nav-actions .btn-soft {
@@ -1189,7 +1363,7 @@ footer {
   }
 
   .prompt-grid {
-    grid-template-columns: repeat(2, 1fr);
+    column-count: 2;
   }
 
   .category-grid {
@@ -1197,16 +1371,15 @@ footer {
   }
 
   .card-media {
-    height: 280px;
+    height: auto !important;
+  }
+
+  .prompt-card .card-media > img {
+    height: auto !important;
   }
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media (max-width: 650px) {
-
   .container {
     width: min(100% - 28px, 1180px);
   }
@@ -1278,7 +1451,10 @@ footer {
     font-size: 29px;
   }
 
-  .prompt-grid,
+  .prompt-grid {
+    column-count: 1;
+  }
+
   .category-grid {
     grid-template-columns: 1fr;
   }
@@ -1287,19 +1463,6 @@ footer {
     align-items: flex-start;
     gap: 12px;
     flex-direction: column;
-  }
-
-  /*
-    Mobileda ham rasm to‘liq ko‘rinadi.
-  */
-
-  .card-media {
-    height: 300px;
-  }
-
-  .card-media img {
-    object-fit: contain !important;
-    object-position: center center !important;
   }
 
   .card-footer {
@@ -1341,14 +1504,29 @@ footer {
     padding: 24px;
     border-radius: 18px;
   }
+
+  .card-media,
+  .prompt-card .card-media {
+    height: auto !important;
+  }
+
+  .card-media img,
+  .prompt-card .card-media > img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .card-actions {
+    flex-direction: row;
+  }
+
+  .action-btn {
+    min-width: 0;
+    width: 50%;
+  }
 }
 
-/* =========================================================
-   VERY SMALL SCREENS
-========================================================= */
-
 @media (max-width: 420px) {
-
   .nav-actions .btn {
     padding: 8px 9px;
     font-size: 12px;
@@ -1366,183 +1544,112 @@ footer {
   .hero h1 {
     font-size: 40px;
   }
-
-/* =========================================================
-   CARD IMAGE — FULL WIDTH, ORIGINAL RATIO
-========================================================= */
-
-.card-media {
-  position: relative;
-  width: 100%;
-  height: auto !important;
-  min-height: 0;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  background: #f5f5f7;
-  display: block;
-  line-height: 0;
 }
 
-.card-media img,
-.prompt-card img {
-  display: block !important;
-
-  width: 100% !important;
-  max-width: none !important;
-
-  height: auto !important;
-  max-height: none !important;
-
-  object-fit: fill !important;
-  object-position: center !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
+.svg-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-.media-placeholder {
-  width: 100%;
-  min-height: 220px;
-  display: grid;
-  place-items: center;
-  font-size: 48px;
-  color: #b6aaff;
-  background: #f5f5f7;
+.svg-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    display: block;
 }
 
-.type-pill {
-  position: absolute;
-  left: 13px;
-  top: 13px;
-  background: rgba(255, 255, 255, 0.94);
-  padding: 6px 9px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1.5;
-  z-index: 5;
+.cat-icon .svg-icon svg {
+    width: 23px;
+    height: 23px;
 }
 
-  .card-actions {
-    flex-direction: row;
-  }
+.media-placeholder .svg-icon svg {
+    width: 42px;
+    height: 42px;
+    stroke-width: 1.5;
+}
 
-  .action-btn {
-    min-width: 0;
-    width: 50%;
-  }
+.like-icon .svg-icon svg,
+.copy-icon .svg-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* =========================================================
-   FINAL PROMPT IMAGE FIX
+   FIX: CATEGORY SVG ICONS
+   Remove old pseudo-element icons
 ========================================================= */
 
-.prompt-card .card-media {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
+.cat-icon {
+    width: 42px !important;
+    height: 42px !important;
+    margin-bottom: 18px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    position: relative !important;
+
+    font-size: 0 !important;
+    background: #f5f3ff !important;
+    border-radius: 12px !important;
+
     overflow: hidden !important;
-    background: #f5f5f7;
-    line-height: 0;
 }
 
-.prompt-card .card-media > img {
+/* REMOVE OLD CSS ICONS */
+.cat-icon::before,
+.cat-icon::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* NEW SVG */
+.cat-icon .svg-icon {
+    width: 24px !important;
+    height: 24px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #6d4aff !important;
+}
+
+.cat-icon .svg-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+
     display: block !important;
 
-    width: 100% !important;
-    height: auto !important;
+    stroke: #6d4aff !important;
+    fill: none !important;
 
-    min-width: 100% !important;
-    max-width: 100% !important;
-
-    min-height: 0 !important;
-    max-height: none !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    object-fit: initial !important;
-    object-position: initial !important;
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
 }
 
-/* Remove any fixed image heights from responsive rules */
-@media (max-width: 950px) {
-    .prompt-card .card-media {
-        height: auto !important;
-    }
 
-    .prompt-card .card-media > img {
-        height: auto !important;
-    }
+/* Category card */
+.category-card {
+    position: relative !important;
 }
 
-@media (max-width: 650px) {
-    .prompt-card .card-media {
-        height: auto !important;
-    }
-
-    .prompt-card .card-media > img {
-        width: 100% !important;
-        height: auto !important;
-    }
+.category-card:hover .cat-icon {
+    background: #eeeaff !important;
 }
 
-@media (max-width: 420px) {
-    .prompt-card .card-media {
-        height: auto !important;
-    }
-
-    .prompt-card .card-media > img {
-        width: 100% !important;
-        height: auto !important;
-    }
-}
-/* Fix prompt cards stretching to the same row height */
-.prompt-grid {
-    align-items: start;
+.category-card:hover .cat-icon .svg-icon {
+    color: #5b3ce2 !important;
 }
 
-.prompt-card {
-    align-self: start;
-    height: fit-content;
-}
-
-/* =========================================================
-   MASONRY PROMPT GRID
-   Removes empty spaces between cards
-========================================================= */
-
-.prompt-grid {
-    display: block !important;
-    column-count: 3;
-    column-gap: 20px;
-}
-
-.prompt-card {
-    display: inline-block;
-    width: 100%;
-    margin: 0 0 20px;
-    vertical-align: top;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    height: auto !important;
-}
-
-/* Tablet */
-@media (max-width: 950px) {
-    .prompt-grid {
-        column-count: 2;
-        column-gap: 20px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 650px) {
-    .prompt-grid {
-        column-count: 1;
-    }
+.category-card:hover .cat-icon svg {
+    stroke: #5b3ce2 !important;
 }
