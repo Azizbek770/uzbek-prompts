@@ -1,0 +1,10 @@
+const router=require('express').Router();
+const Prompt=require('../models/Prompt');
+const User=require('../models/User');
+const {auth,admin}=require('../middleware/auth');
+router.use(auth,admin);
+router.get('/stats',async(req,res)=>{const [users,prompts,likes,views]=await Promise.all([User.countDocuments(),Prompt.countDocuments(),Prompt.aggregate([{$group:{_id:null,total:{$sum:'$likes'}}}]),Prompt.aggregate([{$group:{_id:null,total:{$sum:'$views'}}}])]);res.json({users,prompts,likes:likes[0]?.total||0,views:views[0]?.total||0})});
+router.get('/prompts',async(req,res)=>res.json(await Prompt.find().populate('author','name email').sort({createdAt:-1})));
+router.patch('/prompts/:id',async(req,res)=>res.json(await Prompt.findByIdAndUpdate(req.params.id,{approved:!!req.body.approved},{new:true})));
+router.delete('/prompts/:id',async(req,res)=>{await Prompt.findByIdAndDelete(req.params.id);res.json({ok:true})});
+module.exports=router;

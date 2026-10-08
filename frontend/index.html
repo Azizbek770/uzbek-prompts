@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Uzbek Prompts — a modern AI prompt library for creators.">
+  <title>Uzbek Prompts — AI Prompt Library</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav-wrap">
+    <a class="brand" href="#top"><span class="brand-mark">U</span><span>Uzbek <b>Prompts</b></span></a>
+    <nav class="nav-links">
+      <a href="#prompts">Prompts</a><a href="#categories">Categories</a><a href="#about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-soft" id="addTopBtn">+ Add Prompt</button>
+      <button class="btn btn-outline" id="loginBtn">Log In</button>
+      <button class="btn btn-dark" id="registerBtn">Sign Up</button>
+      <button class="btn btn-user hidden" id="userMenu">Account</button>
+    </div>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-inner">
+    <div class="eyebrow"><span class="dot"></span> THE AI PROMPT LIBRARY</div>
+    <h1>Create better<br><em>results</em> with AI.</h1>
+    <p>Discover tested prompts, copy them instantly, save your favorites, and share your best prompts with the community.</p>
+    <div class="hero-actions"><button class="btn btn-primary" id="viewPromptsBtn">Explore Prompts <span>→</span></button><button class="btn btn-outline" id="heroAdd">Publish a Prompt</button></div>
+    <div class="search-shell"><span>⌕</span><input id="q" placeholder="Search prompts, categories, or topics..." autocomplete="off"><button id="searchBtn">Search</button></div>
+    <div class="trust"><span>✦ Practical</span><span>•</span><span>Community powered</span><span>•</span><span>Free to start</span></div>
+  </div>
+</section>
+
+<section class="stats"><div class="container stats-grid"><div><strong id="statPrompts">0</strong><span>Prompts</span></div><div><strong id="statCategories">0</strong><span>Categories</span></div><div><strong>24/7</strong><span>Inspiration</span></div><div><strong>100%</strong><span>Community</span></div></div></section>
+
+<section class="section" id="prompts">
+  <div class="container">
+    <div class="section-head"><div><span class="section-kicker">PROMPT LIBRARY</span><h2>Useful prompts for every task</h2><p>Find a prompt, open it, and copy it in one click.</p></div><button class="btn btn-primary" id="sectionAdd">+ New Prompt</button></div>
+    <div class="toolbar"><div class="chips" id="typeFilters"><button class="chip active" data-type="all">All</button><button class="chip" data-type="image">Image</button><button class="chip" data-type="video">Video</button><button class="chip" data-type="text">Text</button></div><select id="sort"><option value="newest">Newest</option><option value="popular">Most Popular</option><option value="views">Most Viewed</option><option value="oldest">Oldest</option></select></div>
+    <div id="grid" class="prompt-grid"></div>
+  </div>
+</section>
+
+<section class="section category-section" id="categories"><div class="container"><div class="section-head"><div><span class="section-kicker">CATEGORIES</span><h2>Choose a category</h2><p>Browse prompts by the type of work you are doing.</p></div></div><div class="category-grid" id="categoryGrid"></div></div></section>
+
+<section class="cta-section" id="about"><div class="container cta-card"><div><span class="section-kicker">JOIN THE COMMUNITY</span><h2>Share your best prompt with everyone.</h2><p>Have a useful prompt? Publish it to Uzbek Prompts and help other creators get better results.</p></div><button class="btn btn-light" id="ctaAdd">Publish a Prompt →</button></div></section>
+</main>
+
+<footer><div class="container footer-inner"><div><a class="brand" href="#top"><span class="brand-mark">U</span><span>Uzbek <b>Prompts</b></span></a><p>A modern prompt library that makes working with AI easier.</p></div><div><b>Platform</b><a href="#prompts">Prompts</a><a href="#categories">Categories</a><a href="#about">About</a></div><div><b>Support</b><a href="mailto:hello@uzbekpromts.uz">Contact</a><a href="#about">Community</a></div></div><div class="container copyright">© 2026 Uzbek Prompts. All rights reserved.</div></footer>
+
+<div class="modal" id="authModal"><div class="modal-card"><button class="modal-close" data-close="authModal">×</button><div class="modal-icon">U</div><h3 id="authTitle">Welcome to Uzbek Prompts</h3><p id="authSubtitle">Log in to publish, like, and manage your prompts.</p><div class="tabs"><button id="loginTab" class="active">Log In</button><button id="registerTab">Sign Up</button></div><input id="authName" class="field hidden" placeholder="Your name" autocomplete="name"><input id="authEmail" class="field" type="email" placeholder="Email address" autocomplete="email"><input id="authPassword" class="field" type="password" placeholder="Password (6+ characters)" autocomplete="current-password"><button class="btn btn-primary wide" id="authSubmit">Log In</button><div id="authMsg" class="form-msg"></div></div></div>
+
+<div class="modal" id="promptModal"><div class="modal-card prompt-modal"><button class="modal-close" data-close="promptModal">×</button><span class="section-kicker">NEW PROMPT</span><h3>Publish your prompt</h3><p class="muted">Make it clear, useful, and easy for another creator to reuse.</p><form id="promptForm"><label>Title<input class="field" id="pTitle" required maxlength="120" placeholder="Example: Cinematic portrait prompt"></label><div class="two-cols"><label>Type<select class="field" id="pType"><option value="image">Image</option><option value="video">Video</option><option value="text">Text</option></select></label><label>Category<select class="field" id="pCategory"></select></label></div><label>Short description<textarea class="field" id="pDescription" rows="2" maxlength="500" placeholder="What is this prompt useful for?"></textarea></label><label>Prompt<textarea class="field prompt-text" id="pPrompt" rows="8" required maxlength="12000" placeholder="Write the complete prompt here..."></textarea></label><label>Image URL <span class="optional">(optional)</span><input class="field" id="pImage" type="url" placeholder="https://..."></label><button class="btn btn-primary wide" type="submit">Publish Prompt →</button><div id="promptMsg" class="form-msg"></div></form></div></div>
+
+<div class="modal" id="accountModal"><div class="modal-card"><button class="modal-close" data-close="accountModal">×</button><div class="modal-icon">👤</div><h3 id="accountName">Your Account</h3><p id="accountEmail" class="muted"></p><div class="account-actions"><button class="btn btn-outline wide" id="myPromptsBtn">My Prompts</button><button class="btn btn-dark wide" id="logoutBtn">Log Out</button></div><div id="myPrompts" class="my-prompts hidden"></div></div></div>
+
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body></html>
