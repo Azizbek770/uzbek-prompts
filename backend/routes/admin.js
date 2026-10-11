@@ -123,34 +123,59 @@ router.patch('/prompts/:id', async (req, res) => {
     }
 
     for (const field of ['imageUrl', 'imageSourceUrl']) {
-      if (updates[field] !== undefined) {
-        const value = updates[field];
+  if (updates[field] === undefined) continue;
 
-        if (typeof value !== 'string') {
-          return res.status(400).json({
-            message: `${field} must be a URL string.`
-          });
-        }
+  const value = updates[field];
 
-        if (value.trim()) {
-          try {
-            const url = new URL(value.trim());
+  if (typeof value !== 'string') {
+    return res.status(400).json({
+      message: `${field} must be a string.`
+    });
+  }
 
-            if (!['http:', 'https:'].includes(url.protocol)) {
-              throw new Error('Invalid protocol');
-            }
+  const trimmed = value.trim();
 
-            updates[field] = url.toString();
-          } catch {
-            return res.status(400).json({
-              message: `${field} must be a valid HTTP or HTTPS URL.`
-            });
-          }
-        } else {
-          updates[field] = '';
-        }
-      }
+  // Allow images uploaded from the user's computer.
+  if (field === 'imageUrl' && trimmed.startsWith('data:')) {
+    const allowedImageData =
+      /^data:image\/(?:jpeg|png|webp|gif);base64,[A-Za-z0-9+/]+={0,2}$/;
+
+    if (!allowedImageData.test(trimmed)) {
+      return res.status(400).json({
+        message: 'Invalid image data. Use JPEG, PNG, WEBP, or GIF.'
+      });
     }
+
+    // Limit the encoded image to approximately 7 MB.
+    if (trimmed.length > 7 * 1024 * 1024) {
+      return res.status(400).json({
+        message: 'Image is too large. Please choose a smaller image.'
+      });
+    }
+
+    updates[field] = trimmed;
+    continue;
+  }
+
+  // Normal URLs must use HTTP or HTTPS.
+  if (trimmed) {
+    try {
+      const url = new URL(trimmed);
+
+      if (!['http:', 'https:'].includes(url.protocol)) {
+        throw new Error('Invalid protocol');
+      }
+
+      updates[field] = url.toString();
+    } catch {
+      return res.status(400).json({
+        message: `${field} must be a valid HTTP or HTTPS URL.`
+      });
+    }
+  } else {
+    updates[field] = '';
+  }
+}
 
     for (const field of ['imageAuthor', 'imageLicense']) {
       if (
