@@ -1,209 +1,557 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Uzbek Prompts — Admin</title>
+
 <style>
-:root{
-  --bg:#f7f8fa;--card:#fff;--text:#172033;--muted:#7b8798;
-  --line:#e7ebf0;--teal:#1597a3;--teal2:#1db6c3;--soft:#eaf7f8;
-  --green:#3fa67b;--orange:#d8a443;--red:#d94b56;
-  --sidebar:278px;--shadow:0 8px 30px rgba(25,42,70,.055)
+
+
+
+  
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #7b8798;
+  --line: #e7ebf0;
+  --teal: #1597a3;
+  --teal2: #1db6c3;
+  --soft: #eaf7f8;
+  --green: #3fa67b;
+  --orange: #d8a443;
+  --red: #d94b56;
+  --sidebar: 278px;
+  --shadow: 0 8px 30px rgba(25, 42, 70, .055);
 }
+
+
+
+
 *{box-sizing:border-box}html,body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+
 button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+
 .app{min-height:100vh}.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar);background:#fff;border-right:1px solid var(--line);padding:25px 17px 18px;display:flex;flex-direction:column;z-index:20}
+
 .brand{display:flex;gap:12px;align-items:center;padding:0 10px 30px}.brand-mark{width:42px;height:42px;border-radius:11px;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:21px;font-weight:800;box-shadow:0 8px 20px rgba(21,151,163,.2)}.brand b{font-size:17px}.brand small{display:block;color:#9aa5b3;font-size:9px;letter-spacing:.13em;font-weight:800;margin-top:3px}
+
 .nav-label{font-size:10px;letter-spacing:.12em;font-weight:800;color:#9aa4b2;padding:0 12px;margin:13px 0 8px}.nav{display:grid;gap:3px}.nav button{border:0;background:none;color:#687486;border-radius:10px;width:100%;padding:11px 12px;display:flex;gap:12px;align-items:center;text-align:left;font-size:13px;font-weight:650}.nav button:hover{background:#f3f6f8;color:#172033}.nav button.active{background:#e3f5f6;color:#138d98}.ico{width:18px;text-align:center}.count{margin-left:auto;background:#e8f6f7;color:#1294a0;border-radius:999px;padding:2px 7px;font-size:10px}.online{margin-top:auto;border:1px solid var(--line);border-radius:14px;padding:13px;background:#fbfcfd}.online b{font-size:11px}.online span{display:block;color:#8995a5;font-size:10px;margin-top:3px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bc48a;margin-right:7px}
+
 .main{margin-left:var(--sidebar);min-height:100vh}.topbar{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 25px;position:sticky;top:0;z-index:10}.crumb{font-size:12px;color:#8b96a6;min-width:220px}.crumb b{color:#273349}.search{flex:1;max-width:480px;position:relative}.search input{width:100%;height:40px;border:1px solid var(--line);background:#fbfcfd;border-radius:10px;padding:0 42px 0 14px;outline:none;color:var(--text)}.search span{position:absolute;right:14px;top:10px;color:#9aa5b2}.top-actions{margin-left:auto;display:flex;gap:9px}.topbtn{height:40px;min-width:40px;border:1px solid var(--line);background:#fff;border-radius:10px;color:#667386}.avatar{background:#e5f5f6;color:#128d98;border:0;font-weight:800}
+
 .content{padding:29px 33px 45px;max-width:1500px;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:23px}.page-head h1{font-size:29px;margin:0;letter-spacing:-.7px}.page-head p{margin:7px 0 0;color:#7c8898;font-size:13px}.actions{display:flex;gap:9px}.btn{height:40px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:0 14px;color:#415066;font-weight:650;font-size:12px}.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 7px 16px rgba(21,151,163,.16)}
+
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:17px}.kpi{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 17px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}.kpi-head{display:flex;justify-content:space-between;align-items:center;color:#687587;font-size:11px;font-weight:650}.kpi-icon{width:36px;height:36px;border-radius:10px;background:var(--soft);color:var(--teal);display:grid;place-items:center}.kpi strong{display:block;font-size:27px;margin-top:11px}.kpi small{color:#8b96a5;font-size:10px}.spark{position:absolute;right:14px;bottom:13px;width:92px;height:32px}
+
 .grid{display:grid;grid-template-columns:minmax(0,2.05fr) minmax(300px,1fr);gap:17px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);overflow:hidden}.card-head{height:70px;border-bottom:1px solid var(--line);padding:16px 17px;display:flex;align-items:center;justify-content:space-between}.card-head h2{font-size:14px;margin:0}.card-head p{font-size:10px;color:#8a96a5;margin:4px 0 0}.badge{background:#e8f7f8;color:#1394a0;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:800}.card-body{padding:18px}
+
 .chart-wrap{height:335px;position:relative}.chart-svg{width:100%;height:100%}.chart-grid{stroke:#e9eef2;stroke-width:1}.chart-line{fill:none;stroke:#18a6ba;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}.chart-area{fill:url(#area)}.point{fill:#fff;stroke:#18a6ba;stroke-width:3}.chart-label{font-size:9px;fill:#8995a4}.y-label{font-size:9px;fill:#9aa5b2}
+
 .top-list{display:grid;gap:9px}.top-item{border:1px solid #edf0f3;border-radius:11px;padding:11px 12px;display:flex;justify-content:space-between;gap:10px}.top-item b{font-size:11px;display:block}.top-item small{display:block;color:#8b96a4;margin-top:4px;font-size:9px}.top-num{text-align:right;font-weight:750;font-size:12px}.top-num small{font-weight:400}
+
 .lower{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);gap:17px;margin-top:17px}.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cat{border:1px solid #e9edf1;border-radius:11px;padding:14px;background:#fcfdfd}.cat-name{font-size:11px;color:#7b8797}.cat strong{display:block;font-size:22px;margin:6px 0 3px}.cat small{font-size:9px;color:#8b96a5}
+
 .quick{display:grid;gap:9px}.quick button{height:42px;border:1px solid #e1e8ed;background:#fff;border-radius:10px;text-align:left;padding:0 13px;color:#456077;font-weight:650;font-size:11px}.quick button:hover{border-color:#9ed9de;background:#f6fbfb;color:#138d98}
+
 .table-card{margin-top:17px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:820px}th{text-align:left;padding:12px 14px;background:#fbfcfd;color:#8995a4;font-size:9px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line)}td{padding:13px 14px;border-bottom:1px solid #eef1f4;font-size:11px}tr:hover td{background:#fcfefe}.prompt-title{font-weight:700}.sub{display:block;color:#8c97a5;font-size:9px;margin-top:3px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#edf8f8;color:#158f99;font-size:9px}.row-actions button{border:1px solid var(--line);background:#fff;border-radius:7px;width:28px;height:28px;margin-right:4px}
+
 .page{display:none}.page.active{display:block}.toolbar{display:flex;gap:9px;padding:14px;border-bottom:1px solid var(--line)}.toolbar input,.toolbar select{height:38px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:0 10px;color:#46556a;outline:none}.toolbar input{flex:1}
+
 .empty{padding:35px;text-align:center;color:#8a96a5;font-size:12px}.empty b{display:block;color:#263247;margin-bottom:5px}.modal-bg{position:fixed;inset:0;background:rgba(16,25,38,.4);display:none;place-items:center;z-index:100;padding:20px}.modal-bg.show{display:grid}.modal{width:min(700px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:16px}.modal-head,.modal-foot{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.modal-foot{border-top:1px solid var(--line);border-bottom:0;justify-content:flex-end}.modal-body{padding:18px}.modal-head h3{margin:0;font-size:15px}
+
 .login{min-height:100vh;display:grid;place-items:center;background:#f5f8f9}.login-box{width:min(420px,calc(100% - 30px));background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:var(--shadow)}.login-brand{display:flex;gap:11px;align-items:center;margin-bottom:24px}.login-box h1{margin:0}.login-box p{color:#7b8796;font-size:12px;line-height:1.6}.label{display:block;font-size:11px;font-weight:700;margin-top:15px}.field{width:100%;height:42px;margin-top:7px;border:1px solid var(--line);border-radius:9px;padding:0 12px;outline:none}.login-btn{width:100%;margin-top:18px}.msg{color:#d33;font-size:11px;margin-top:10px;min-height:16px}
+
 @media(max-width:1050px){.kpis{grid-template-columns:repeat(2,1fr)}.grid,.lower{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,1fr)}}
+
 @media(max-width:760px){:root{--sidebar:0px}.sidebar{display:none}.main{margin-left:0}.content{padding:20px 15px}.topbar{padding:0 15px}.crumb{display:none}.search{display:none}.page-head{flex-direction:column;gap:12px}.kpis{grid-template-columns:1fr 1fr}}
+
 @media(max-width:500px){.kpis,.category-grid{grid-template-columns:1fr}.actions{width:100%}.actions .btn{flex:1}}
+
 </style>
+
 </head>
+
 <body>
 
+
+
 <div id="loginView" class="login hidden">
-  <div class="login-box">
-    <div class="login-brand"><div class="brand-mark">U</div><div><b>Uzbek Prompts</b><small style="display:block;color:#9aa5b2;font-size:9px;letter-spacing:.1em">ADMIN CONSOLE</small></div></div>
-    <h1>Welcome back</h1><p>Sign in with your administrator credentials to manage the Uzbek Prompts platform.</p>
-    <label class="label">Admin Email<input id="email" class="field" type="email" placeholder="admin@example.com"></label>
-    <label class="label">Password<input id="password" class="field" type="password" placeholder="••••••••"></label>
-    <button id="login" class="btn primary login-btn">Sign in to Admin</button>
-    <div id="msg" class="msg"></div>
-  </div>
+
+  <div class="login-box">
+
+    <div class="login-brand"><div class="brand-mark">U</div><div><b>Uzbek Prompts</b><small style="display:block;color:#9aa5b2;font-size:9px;letter-spacing:.1em">ADMIN CONSOLE</small></div></div>
+
+    <h1>Welcome back</h1><p>Sign in with your administrator credentials to manage the Uzbek Prompts platform.</p>
+
+    <label class="label">Admin Email<input id="email" class="field" type="email" placeholder="admin\@example.com"></label>
+
+    <label class="label">Password<input id="password" class="field" type="password" placeholder="••••••••"></label>
+
+    <button id="login" class="btn primary login-btn">Sign in to Admin</button>
+
+    <div id="msg" class="msg"></div>
+
+  </div>
+
 </div>
+
+
 
 <div id="app" class="app hidden">
+
 <aside class="sidebar">
-  <div class="brand"><div class="brand-mark">U</div><div><b>Uzbek Prompts</b><small>ADMIN CONSOLE</small></div></div>
-  <div class="nav-label">WORKSPACE</div>
-  <nav class="nav">
-    <button class="active" data-page="dashboard"><span class="ico">⌂</span>Dashboard</button>
-    <button data-page="prompts"><span class="ico">✦</span>Prompts <span id="navPromptCount" class="count">0</span></button>
-    <button data-page="analytics"><span class="ico">▥</span>Analytics</button>
-    <button data-page="categories"><span class="ico">◈</span>Categories</button>
-  </nav>
-  <div class="nav-label">MANAGEMENT</div>
-  <nav class="nav">
-    <button data-page="users"><span class="ico">◎</span>Users <span id="navUserCount" class="count">0</span></button>
-    <button data-page="activity"><span class="ico">◷</span>Activity</button>
-  </nav>
-  <div class="nav-label">SYSTEM</div>
-  <nav class="nav"><button data-page="settings"><span class="ico">⚙</span>Settings</button></nav>
-  <div class="online"><b><span class="dot"></span>System online</b><span>API connection active</span></div>
+
+  <div class="brand"><div class="brand-mark">U</div><div><b>Uzbek Prompts</b><small>ADMIN CONSOLE</small></div></div>
+
+  <div class="nav-label">WORKSPACE</div>
+
+  <nav class="nav">
+
+    <button class="active" data-page="dashboard"><span class="ico">⌂</span>Dashboard</button>
+
+    <button data-page="prompts"><span class="ico">✦</span>Prompts <span id="navPromptCount" class="count">0</span></button>
+
+    <button data-page="analytics"><span class="ico">▥</span>Analytics</button>
+
+    <button data-page="categories"><span class="ico">◈</span>Categories</button>
+
+  </nav>
+
+  <div class="nav-label">MANAGEMENT</div>
+
+  <nav class="nav">
+
+    <button data-page="users"><span class="ico">◎</span>Users <span id="navUserCount" class="count">0</span></button>
+
+    <button data-page="activity"><span class="ico">◷</span>Activity</button>
+
+  </nav>
+
+  <div class="nav-label">SYSTEM</div>
+
+  <nav class="nav"><button data-page="settings"><span class="ico">⚙</span>Settings</button></nav>
+
+  <div class="online"><b><span class="dot"></span>System online</b><span>API connection active</span></div>
+
 </aside>
 
+
+
 <main class="main">
+
 <header class="topbar">
-  <div class="crumb">Workspace / <b id="crumbPage">Dashboard</b></div>
-  <div class="search"><input id="globalSearch" placeholder="Search prompts..." oninput="syncSearch(this.value)"><span>⌕</span></div>
-  <div class="top-actions"><button class="topbtn" onclick="loadDashboard()">↻</button><button class="topbtn avatar">A</button></div>
+
+  <div class="crumb">Workspace / <b id="crumbPage">Dashboard</b></div>
+
+  <div class="search"><input id="globalSearch" placeholder="Search prompts..." oninput="syncSearch(this.value)"><span>⌕</span></div>
+
+  <div class="top-actions"><button class="topbtn" onclick="loadDashboard()">↻</button><button class="topbtn avatar">A</button></div>
+
 </header>
 
+
+
 <section class="content">
+
 <div id="page-dashboard" class="page active">
-  <div class="page-head"><div><h1>Dashboard</h1><p>Live overview of your Uzbek Prompts platform.</p></div><div class="actions"><button class="btn" onclick="exportCSV()">Export CSV</button><button class="btn primary" onclick="openPage('prompts')">Manage Prompts →</button></div></div>
-  <div class="kpis">
-    <div class="kpi"><div class="kpi-head">Total Users <div class="kpi-icon">◎</div></div><strong id="statUsers">0</strong><small>Registered platform users</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 29 L18 25 L30 28 L45 16 L60 20 L75 9 L98 13" fill="none" stroke="#2aa6b2" stroke-width="2"/></svg></div>
-    <div class="kpi"><div class="kpi-head">Total Prompts <div class="kpi-icon">✦</div></div><strong id="statPrompts">0</strong><small>Published prompt library</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 29 L18 20 L30 24 L45 13 L60 18 L75 8 L98 11" fill="none" stroke="#2aa6b2" stroke-width="2"/></svg></div>
-    <div class="kpi"><div class="kpi-head">Total Likes <div class="kpi-icon">♡</div></div><strong id="statLikes">0</strong><small>Community engagement</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 20 L18 27 L31 14 L44 22 L58 9 L70 24 L84 12 L98 18" fill="none" stroke="#3fa67b" stroke-width="2"/></svg></div>
-    <div class="kpi"><div class="kpi-head">Total Views <div class="kpi-icon">◉</div></div><strong id="statViews">0</strong><small>Content impressions</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 28 L18 23 L30 25 L45 15 L60 17 L75 8 L98 11" fill="none" stroke="#d8a443" stroke-width="2"/></svg></div>
-  </div>
 
-  <div class="grid">
-    <div class="card"><div class="card-head"><div><h2>Views overview</h2><p>Views across your current prompt library</p></div><span class="badge">LIVE DATA</span></div><div class="card-body"><div id="viewsChart" class="chart-wrap"></div></div></div>
-    <div class="card"><div class="card-head"><div><h2>Top prompts</h2><p>Most viewed content</p></div><button class="btn" onclick="openPage('prompts')">View all</button></div><div class="card-body"><div id="topPrompts" class="top-list"></div></div></div>
-  </div>
+  <div class="page-head"><div><h1>Dashboard</h1><p>Live overview of your Uzbek Prompts platform.</p></div><div class="actions"><button class="btn" onclick="exportCSV()">Export CSV</button><button class="btn primary" onclick="openPage('prompts')">Manage Prompts →</button></div></div>
 
-  <div class="lower">
-    <div class="card"><div class="card-head"><div><h2>Category performance</h2><p>Prompt distribution and engagement by category</p></div></div><div class="card-body"><div id="categoriesGrid" class="category-grid"></div></div></div>
-    <div class="card"><div class="card-head"><div><h2>Quick actions</h2><p>Common administrator tools</p></div></div><div class="card-body"><div class="quick"><button onclick="openPage('prompts')">✦ Manage prompt library</button><button onclick="openPage('analytics')">▥ Open analytics</button><button onclick="exportCSV()">⇩ Export prompt data</button><button onclick="openPage('activity')">◷ View recent activity</button></div></div></div>
-  </div>
+  <div class="kpis">
 
-  <div class="card table-card"><div class="card-head"><div><h2>Recent prompts</h2><p>Latest published content</p></div><button class="btn" onclick="openPage('prompts')">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Prompt</th><th>Category</th><th>Type</th><th>Views</th><th>Likes</th><th>Author</th></tr></thead><tbody id="recentTable"></tbody></table></div></div>
+    <div class="kpi"><div class="kpi-head">Total Users <div class="kpi-icon">◎</div></div><strong id="statUsers">0</strong><small>Registered platform users</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 29 L18 25 L30 28 L45 16 L60 20 L75 9 L98 13" fill="none" stroke="#2aa6b2" stroke-width="2"/></svg></div>
+
+    <div class="kpi"><div class="kpi-head">Total Prompts <div class="kpi-icon">✦</div></div><strong id="statPrompts">0</strong><small>Published prompt library</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 29 L18 20 L30 24 L45 13 L60 18 L75 8 L98 11" fill="none" stroke="#2aa6b2" stroke-width="2"/></svg></div>
+
+    <div class="kpi"><div class="kpi-head">Total Likes <div class="kpi-icon">♡</div></div><strong id="statLikes">0</strong><small>Community engagement</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 20 L18 27 L31 14 L44 22 L58 9 L70 24 L84 12 L98 18" fill="none" stroke="#3fa67b" stroke-width="2"/></svg></div>
+
+    <div class="kpi"><div class="kpi-head">Total Views <div class="kpi-icon">◉</div></div><strong id="statViews">0</strong><small>Content impressions</small><svg class="spark" viewBox="0 0 100 35"><path d="M2 28 L18 23 L30 25 L45 15 L60 17 L75 8 L98 11" fill="none" stroke="#d8a443" stroke-width="2"/></svg></div>
+
+  </div>
+
+
+
+  <div class="grid">
+
+    <div class="card"><div class="card-head"><div><h2>Views overview</h2><p>Views across your current prompt library</p></div><span class="badge">LIVE DATA</span></div><div class="card-body"><div id="viewsChart" class="chart-wrap"></div></div></div>
+
+    <div class="card"><div class="card-head"><div><h2>Top prompts</h2><p>Most viewed content</p></div><button class="btn" onclick="openPage('prompts')">View all</button></div><div class="card-body"><div id="topPrompts" class="top-list"></div></div></div>
+
+  </div>
+
+
+
+  <div class="lower">
+
+    <div class="card"><div class="card-head"><div><h2>Category performance</h2><p>Prompt distribution and engagement by category</p></div></div><div class="card-body"><div id="categoriesGrid" class="category-grid"></div></div></div>
+
+    <div class="card"><div class="card-head"><div><h2>Quick actions</h2><p>Common administrator tools</p></div></div><div class="card-body"><div class="quick"><button onclick="openPage('prompts')">✦ Manage prompt library</button><button onclick="openPage('analytics')">▥ Open analytics</button><button onclick="exportCSV()">⇩ Export prompt data</button><button onclick="openPage('activity')">◷ View recent activity</button></div></div></div>
+
+  </div>
+
+
+
+  <div class="card table-card"><div class="card-head"><div><h2>Recent prompts</h2><p>Latest published content</p></div><button class="btn" onclick="openPage('prompts')">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Prompt</th><th>Category</th><th>Type</th><th>Views</th><th>Likes</th><th>Author</th></tr></thead><tbody id="recentTable"></tbody></table></div></div>
+
 </div>
+
+
 
 <div id="page-prompts" class="page"><div class="page-head"><div><h1>Prompt Library</h1><p>Search, filter and manage published prompts.</p></div><button class="btn primary" onclick="openPage('dashboard')">← Dashboard</button></div><div class="card"><div class="toolbar"><input id="promptSearch" placeholder="Search title, category or author..." oninput="renderPrompts()"><select id="categoryFilter" onchange="renderPrompts()"><option value="">All categories</option></select><select id="typeFilter" onchange="renderPrompts()"><option value="">All types</option><option>Image</option><option>Text</option><option>Video</option><option>Code</option></select><button class="btn" onclick="bulkDelete()">Delete selected</button></div><div class="table-wrap"><table><thead><tr><th><input id="selectAll" type="checkbox" onchange="toggleAll(this)"></th><th>Prompt</th><th>Category</th><th>Type</th><th>Views</th><th>Likes</th><th>Author</th><th>Actions</th></tr></thead><tbody id="promptsTable"></tbody></table></div></div></div>
 
+
+
 <div id="page-analytics" class="page"><div class="page-head"><div><h1>Analytics</h1><p>Understand how your prompt library performs.</p></div></div><div class="kpis"><div class="kpi"><div class="kpi-head">Tracked prompts</div><strong id="aPrompts">0</strong><small>Current library size</small></div><div class="kpi"><div class="kpi-head">Tracked views</div><strong id="aViews">0</strong><small>Sum of prompt views</small></div><div class="kpi"><div class="kpi-head">Like rate</div><strong id="aRate">0%</strong><small>Likes ÷ views</small></div><div class="kpi"><div class="kpi-head">Categories</div><strong id="aCats">0</strong><small>Active categories</small></div></div><div class="grid"><div class="card"><div class="card-head"><div><h2>Relative performance</h2><p>Views by prompt</p></div></div><div class="card-body"><div id="analyticsChart" class="chart-wrap"></div></div></div><div class="card"><div class="card-head"><div><h2>Community engagement</h2><p>Most liked prompts</p></div></div><div class="card-body"><div id="likeList" class="top-list"></div></div></div></div></div>
+
+
 
 <div id="page-categories" class="page"><div class="page-head"><div><h1>Categories</h1><p>Understand how your prompt library is distributed.</p></div></div><div class="card"><div class="card-body"><div id="allCategories" class="category-grid"></div></div></div></div>
 
+
+
 <div id="page-users" class="page"><div class="page-head"><div><h1>Users</h1><p>Platform user overview.</p></div></div><div class="kpis"><div class="kpi"><div class="kpi-head">Registered users</div><strong id="uTotal">0</strong><small>Current platform users</small></div><div class="kpi"><div class="kpi-head">Prompts</div><strong id="uPrompts">0</strong><small>Published library</small></div><div class="kpi"><div class="kpi-head">Views</div><strong id="uViews">0</strong><small>Total impressions</small></div><div class="kpi"><div class="kpi-head">Likes</div><strong id="uLikes">0</strong><small>Total engagement</small></div></div></div>
+
+
 
 <div id="page-activity" class="page"><div class="page-head"><div><h1>Recent Activity</h1><p>Latest changes in your prompt library.</p></div></div><div class="card"><div class="card-body" id="activityList"></div></div></div>
 
+
+
 <div id="page-settings" class="page"><div class="page-head"><div><h1>Settings</h1><p>Admin panel preferences and system status.</p></div></div><div class="card"><div class="card-body"><div class="cat"><div class="cat-name">SYSTEM STATUS</div><strong style="color:var(--green)">Online</strong><small>Backend API connection active</small></div><br><button class="btn" onclick="logout()">Logout</button></div></div></div>
+
 </section>
+
 </main>
+
 </div>
+
+
 
 <div id="modalBg" class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-head"><h3 id="modalTitle">Prompt</h3><button class="btn" onclick="closeModal()">Close</button></div><div class="modal-body" id="modalBody"></div><div class="modal-foot"><button class="btn" onclick="closeModal()">Done</button></div></div></div>
 
+
+
 <script>
+
 let adminToken=localStorage.getItem("up_admin_token")||"",allPrompts=[],statsData={},selected=new Set();
+
 const $=id=>document.getElementById(id);
+
 const esc=v=>String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+
 const num=v=>Number(v||0).toLocaleString();
 
+
+
 async function api(url,opt={}){
-  const headers={...(opt.headers||{})};
-  if(adminToken)headers.Authorization=`Bearer ${adminToken}`;
-  if(opt.body)headers["Content-Type"]="application/json";
-  const r=await fetch(url,{...opt,headers});
-  let d=null;try{d=await r.json()}catch{}
-  if(!r.ok)throw new Error(d?.message||d?.error||`Request failed: ${r.status}`);
-  return d;
+
+  const headers={...(opt.headers||{})};
+
+  if(adminToken)headers.Authorization=`Bearer ${adminToken}`;
+
+  if(opt.body)headers["Content-Type"]="application/json";
+
+  const r=await fetch(url,{...opt,headers});
+
+  let d=null;try{d=await r.json()}catch{}
+
+  if(!r.ok)throw new Error(d?.message||d?.error||`Request failed: ${r.status}`);
+
+  return d;
+
 }
+
 function showApp(){$("app").classList.remove("hidden");$("loginView").classList.add("hidden")}
+
 function showLogin(){$("app").classList.add("hidden");$("loginView").classList.remove("hidden")}
+
 async function login(){
-  $("msg").textContent="";
-  try{
-    const d=await api("/api/auth/admin-login",{method:"POST",body:JSON.stringify({email:$("email").value.trim(),password:$("password").value})});
-    if(d?.token){adminToken=d.token;localStorage.setItem("up_admin_token",adminToken);showApp();loadDashboard()}
-  }catch(e){$("msg").textContent=e.message||"Login failed"}
+
+  $("msg").textContent="";
+
+  try{
+
+    const d=await api("/api/auth/admin-login",{method:"POST",body:JSON.stringify({email:$("email").value.trim(),password:$("password").value})});
+
+    if(d?.token){adminToken=d.token;localStorage.setItem("up_admin_token",adminToken);showApp();loadDashboard()}
+
+  }catch(e){$("msg").textContent=e.message||"Login failed"}
+
 }
+
 $("login").onclick=login;
+
 $("password").addEventListener("keydown",e=>{if(e.key==="Enter")login()});
 
+
+
 async function loadDashboard(){
-  try{
-    const [s,p]=await Promise.all([api("/api/admin/stats"),api("/api/admin/prompts")]);
-    statsData=s?.data||s||{};
-    allPrompts=Array.isArray(p)?p:(p?.data||p?.prompts||[]);
-    renderAll();
-  }catch(e){console.error(e)}
+
+  try{
+
+    const [s,p]=await Promise.all([api("/api/admin/stats"),api("/api/admin/prompts")]);
+
+    statsData=s?.data||s||{};
+
+    allPrompts=Array.isArray(p)?p:(p?.data||p?.prompts||[]);
+
+    renderAll();
+
+  }catch(e){console.error(e)}
+
 }
+
 function totalViews(){return allPrompts.reduce((a,p)=>a+Number(p.views||0),0)}
+
 function totalLikes(){return allPrompts.reduce((a,p)=>a+Number(p.likes||0),0)}
+
 function totalUsers(){return Number(statsData.totalUsers??statsData.users??statsData.userCount??0)}
+
 function renderAll(){
-  const views=Number(statsData.totalViews??statsData.views??totalViews());
-  const likes=Number(statsData.totalLikes??statsData.likes??totalLikes());
-  $("statUsers").textContent=num(totalUsers());$("statPrompts").textContent=num(allPrompts.length);
-  $("statLikes").textContent=num(likes);$("statViews").textContent=num(views);
-  $("navPromptCount").textContent=allPrompts.length;$("navUserCount").textContent=totalUsers();
-  renderChart("viewsChart",[...allPrompts].sort((a,b)=>Number(b.views||0)-Number(a.views||0)).slice(0,8));
-  renderTop();renderCats();renderRecent();renderPrompts();renderAnalytics();renderActivity();
+
+  const views=Number(statsData.totalViews??statsData.views??totalViews());
+
+  const likes=Number(statsData.totalLikes??statsData.likes??totalLikes());
+
+  $("statUsers").textContent=num(totalUsers());$("statPrompts").textContent=num(allPrompts.length);
+
+  $("statLikes").textContent=num(likes);$("statViews").textContent=num(views);
+
+  $("navPromptCount").textContent=allPrompts.length;$("navUserCount").textContent=totalUsers();
+
+  renderChart("viewsChart",[...allPrompts].sort((a,b)=>Number(b.views||0)-Number(a.views||0)).slice(0,8));
+
+  renderTop();renderCats();renderRecent();renderPrompts();renderAnalytics();renderActivity();
+
 }
+
 function renderChart(id,list){
-  const el=$(id);if(!el)return;
-  if(!list.length){el.innerHTML='<div class="empty"><b>No data yet</b>Prompts will appear here.</div>';return}
-  const vals=list.map(p=>Number(p.views||0)),max=Math.max(...vals,1),w=900,h=300,pad={l:45,r:12,t:18,b:45},iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
-  const pts=vals.map((v,i)=>({x:pad.l+(vals.length===1?iw/2:i*iw/(vals.length-1)),y:pad.t+ih-(v/max)*ih,v}));
-  const path=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
-  const area=path+" L "+pts.at(-1).x+" "+(pad.t+ih)+" L "+pts[0].x+" "+(pad.t+ih)+" Z";
-  const ys=[0,.25,.5,.75,1].map(t=>({y:pad.t+ih-t*ih,v:Math.round(max*t)}));
-  el.innerHTML=`<svg class="chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20aec0" stop-opacity=".24"/><stop offset="1" stop-color="#20aec0" stop-opacity="0"/></linearGradient></defs>${ys.map(y=>`<line class="chart-grid" x1="${pad.l}" y1="${y.y}" x2="${w-pad.r}" y2="${y.y}"/><text class="y-label" x="3" y="${y.y+3}">${num(y.v)}</text>`).join("")}<path class="chart-area" d="${area}"/><path class="chart-line" d="${path}"/>${pts.map((p,i)=>`<circle class="point" cx="${p.x}" cy="${p.y}" r="5"/><text class="chart-label" text-anchor="middle" x="${p.x}" y="${h-17}">${esc((list[i].title||"Prompt").slice(0,12))}</text>`).join("")}</svg>`;
+
+  const el=$(id);if(!el)return;
+
+  if(!list.length){el.innerHTML='<div class="empty"><b>No data yet</b>Prompts will appear here.</div>';return}
+
+  const vals=list.map(p=>Number(p.views||0)),max=Math.max(...vals,1),w=900,h=300,pad={l:45,r:12,t:18,b:45},iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
+
+  const pts=vals.map((v,i)=>({x:pad.l+(vals.length===1?iw/2:i*iw/(vals.length-1)),y:pad.t+ih-(v/max)*ih,v}));
+
+  const path=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
+
+  const area=path+" L "+pts.at(-1).x+" "+(pad.t+ih)+" L "+pts[0].x+" "+(pad.t+ih)+" Z";
+
+  const ys=[0,.25,.5,.75,1].map(t=>({y:pad.t+ih-t*ih,v:Math.round(max*t)}));
+
+  el.innerHTML=`<svg class="chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20aec0" stop-opacity=".24"/><stop offset="1" stop-color="#20aec0" stop-opacity="0"/></linearGradient></defs>${ys.map(y=>`<line class="chart-grid" x1="${pad.l}" y1="${y.y}" x2="${w-pad.r}" y2="${y.y}"/><text class="y-label" x="3" y="${y.y+3}">${num(y.v)}</text>`).join("")}<path class="chart-area" d="${area}"/><path class="chart-line" d="${path}"/>${pts.map((p,i)=>`<circle class="point" cx="${p.x}" cy="${p.y}" r="5"/><text class="chart-label" text-anchor="middle" x="${p.x}" y="${h-17}">${esc((list[i].title||"Prompt").slice(0,12))}</text>`).join("")}</svg>`;
+
 }
+
 function renderTop(){
-  const list=[...allPrompts].sort((a,b)=>Number(b.views||0)-Number(a.views||0)).slice(0,5);
-  $("topPrompts").innerHTML=list.map(p=>`<div class="top-item"><div><b>${esc(p.title||"Untitled")}</b><small>${esc(p.author?.name||p.author||"Administrator")} · ${esc(p.category||"Other")}</small></div><div class="top-num">${num(p.views)}<small>views</small></div></div>`).join("")||'<div class="empty"><b>No prompts yet</b></div>';
+
+  const list=[...allPrompts].sort((a,b)=>Number(b.views||0)-Number(a.views||0)).slice(0,5);
+
+  $("topPrompts").innerHTML=list.map(p=>`<div class="top-item"><div><b>${esc(p.title||"Untitled")}</b><small>${esc(p.author?.name||p.author||"Administrator")} · ${esc(p.category||"Other")}</small></div><div class="top-num">${num(p.views)}<small>views</small></div></div>`).join("")||'<div class="empty"><b>No prompts yet</b></div>';
+
 }
+
 function renderCats(){
-  const map={};allPrompts.forEach(p=>{const c=p.category||"Other";map[c]??={n:0,v:0,l:0};map[c].n++;map[c].v+=Number(p.views||0);map[c].l+=Number(p.likes||0)});
-  const html=Object.entries(map).sort((a,b)=>b[1].v-a[1].v).map(([c,x])=>`<div class="cat"><div class="cat-name">${esc(c)}</div><strong>${x.n}</strong><small>${num(x.v)} views · ${num(x.l)} likes</small></div>`).join("")||'<div class="empty"><b>No categories yet</b></div>';
-  $("categoriesGrid").innerHTML=html;$("allCategories").innerHTML=html;
+
+  const map={};allPrompts.forEach(p=>{const c=p.category||"Other";map[c]??={n:0,v:0,l:0};map[c].n++;map[c].v+=Number(p.views||0);map[c].l+=Number(p.likes||0)});
+
+  const html=Object.entries(map).sort((a,b)=>b[1].v-a[1].v).map(([c,x])=>`<div class="cat"><div class="cat-name">${esc(c)}</div><strong>${x.n}</strong><small>${num(x.v)} views · ${num(x.l)} likes</small></div>`).join("")||'<div class="empty"><b>No categories yet</b></div>';
+
+  $("categoriesGrid").innerHTML=html;$("allCategories").innerHTML=html;
+
 }
+
 function renderRecent(){
-  const list=[...allPrompts].sort((a,b)=>new Date(b.createdAt||b.created_at||0)-new Date(a.createdAt||a.created_at||0)).slice(0,8);
-  $("recentTable").innerHTML=list.map(p=>`<tr><td><span class="prompt-title">${esc(p.title||"Untitled")}</span><span class="sub">${esc(p.description||p.prompt||"")}</span></td><td><span class="tag">${esc(p.category||"Other")}</span></td><td>${esc(p.type||"Image")}</td><td>${num(p.views)}</td><td>${num(p.likes)}</td><td>${esc(p.author?.name||p.author||"Administrator")}</td></tr>`).join("")||'<tr><td colspan="6"><div class="empty"><b>No prompts yet</b></div></td></tr>';
+
+  const list=[...allPrompts].sort((a,b)=>new Date(b.createdAt||b.created_at||0)-new Date(a.createdAt||a.created_at||0)).slice(0,8);
+
+  $("recentTable").innerHTML=list.map(p=>`<tr><td><span class="prompt-title">${esc(p.title||"Untitled")}</span><span class="sub">${esc(p.description||p.prompt||"")}</span></td><td><span class="tag">${esc(p.category||"Other")}</span></td><td>${esc(p.type||"Image")}</td><td>${num(p.views)}</td><td>${num(p.likes)}</td><td>${esc(p.author?.name||p.author||"Administrator")}</td></tr>`).join("")||'<tr><td colspan="6"><div class="empty"><b>No prompts yet</b></div></td></tr>';
+
 }
+
 function renderPrompts(){
-  const body=$("promptsTable");if(!body)return;
-  const q=($("promptSearch")?.value||"").toLowerCase(),c=$("categoryFilter")?.value||"",t=$("typeFilter")?.value||"";
-  const cats=[...new Set(allPrompts.map(p=>p.category).filter(Boolean))];if($("categoryFilter"))$("categoryFilter").innerHTML='<option value="">All categories</option>'+cats.map(x=>`<option>${esc(x)}</option>`).join("");
-  const f=allPrompts.filter(p=>{const s=`${p.title||""} ${p.category||""} ${p.author?.name||p.author||""}`.toLowerCase();return(!q||s.includes(q))&&(!c||p.category===c)&&(!t||p.type===t)});
-  body.innerHTML=f.map(p=>{const id=p._id||p.id;return`<tr><td><input class="check" type="checkbox" value="${esc(id)}" ${selected.has(String(id))?"checked":""} onchange="selectOne('${esc(id)}',this.checked)"></td><td><span class="prompt-title">${esc(p.title||"Untitled")}</span><span class="sub">${esc(p.description||p.prompt||"")}</span></td><td><span class="tag">${esc(p.category||"Other")}</span></td><td>${esc(p.type||"Image")}</td><td>${num(p.views)}</td><td>${num(p.likes)}</td><td>${esc(p.author?.name||p.author||"Administrator")}</td><td class="row-actions"><button onclick="preview('${esc(id)}')">👁</button><button onclick="delPrompt('${esc(id)}')">🗑</button></td></tr>`}).join("")||'<tr><td colspan="8"><div class="empty"><b>No prompts found</b>Try another filter.</div></td></tr>';
+
+  const body=$("promptsTable");if(!body)return;
+
+  const q=($("promptSearch")?.value||"").toLowerCase(),c=$("categoryFilter")?.value||"",t=$("typeFilter")?.value||"";
+
+  const cats=[...new Set(allPrompts.map(p=>p.category).filter(Boolean))];if($("categoryFilter"))$("categoryFilter").innerHTML='<option value="">All categories</option>'+cats.map(x=>`<option>${esc(x)}</option>`).join("");
+
+  const f=allPrompts.filter(p=>{const s=`${p.title||""} ${p.category||""} ${p.author?.name||p.author||""}`.toLowerCase();return(!q||s.includes(q))&&(!c||p.category===c)&&(!t||p.type===t)});
+
+  body.innerHTML=f.map(p=>{const id=p._id||p.id;return`<tr><td><input class="check" type="checkbox" value="${esc(id)}" ${selected.has(String(id))?"checked":""} onchange="selectOne('${esc(id)}',this.checked)"></td><td><span class="prompt-title">${esc(p.title||"Untitled")}</span><span class="sub">${esc(p.description||p.prompt||"")}</span></td><td><span class="tag">${esc(p.category||"Other")}</span></td><td>${esc(p.type||"Image")}</td><td>${num(p.views)}</td><td>${num(p.likes)}</td><td>${esc(p.author?.name||p.author||"Administrator")}</td><td class="row-actions"><button title="Preview" onclick="preview('${esc(id)}')">👁</button><button title="Edit prompt" onclick="editPrompt('${esc(id)}')">✏️</button><button title="Delete prompt" onclick="delPrompt('${esc(id)}')">🗑</button></td></tr>`}).join("")||'<tr><td colspan="8"><div class="empty"><b>No prompts found</b>Try another filter.</div></td></tr>';
+
 }
+
 function selectOne(id,on){on?selected.add(String(id)):selected.delete(String(id))}
+
 function toggleAll(x){document.querySelectorAll(".check").forEach(c=>{c.checked=x.checked;selectOne(c.value,x.checked)})}
+
 async function delPrompt(id){if(!confirm("Delete this prompt?"))return;try{await api("/api/admin/prompts/"+encodeURIComponent(id),{method:"DELETE"});await loadDashboard()}catch(e){alert(e.message)}}
+
 async function bulkDelete(){const ids=[...selected];if(!ids.length)return alert("Select prompts first.");if(!confirm(`Delete ${ids.length} prompt(s)?`))return;for(const id of ids){try{await api("/api/admin/prompts/"+encodeURIComponent(id),{method:"DELETE"})}catch(e){}}selected.clear();loadDashboard()}
-function preview(id){const p=allPrompts.find(x=>String(x._id||x.id)===String(id));if(!p)return;$("modalTitle").textContent=p.title||"Prompt";$("modalBody").innerHTML=`<p><b>Category:</b> ${esc(p.category||"Other")}</p><p><b>Type:</b> ${esc(p.type||"Image")}</p><p><b>Views:</b> ${num(p.views)} &nbsp; <b>Likes:</b> ${num(p.likes)}</p><p><b>Prompt</b></p><p style="white-space:pre-wrap;line-height:1.7">${esc(p.prompt||"")}</p>`;$("modalBg").classList.add("show")}
-function closeModal(){$("modalBg").classList.remove("show")}
+
+function preview(id){const p=allPrompts.find(x=>String(x._id||x.id)===String(id));if(!p)return;document.querySelector(".modal-foot").innerHTML = '<button class="btn" onclick="closeModal()">Done</button>';$("modalTitle").textContent=p.title||"Prompt";$("modalBody").innerHTML=`<p><b>Category:</b> ${esc(p.category||"Other")}</p><p><b>Type:</b> ${esc(p.type||"Image")}</p><p><b>Views:</b> ${num(p.views)} &nbsp; <b>Likes:</b> ${num(p.likes)}</p><p><b>Prompt</b></p><p style="white-space:pre-wrap;line-height:1.7">${esc(p.prompt||"")}</p>`;$("modalBg").classList.add("show")}
+
+function closeModal() {
+  $("modalBg").classList.remove("show");
+  const footer = document.querySelector(".modal-foot");
+  if (footer) footer.innerHTML = '<button class="btn" onclick="closeModal()">Done</button>';
+}
+
+function editPrompt(id) {
+  const p = allPrompts.find(item => String(item._id || item.id) === String(id));
+  if (!p) return;
+
+  $("modalTitle").textContent = "Edit Prompt";
+  $("modalBody").innerHTML = `
+    <form id="editPromptForm">
+      <label class="label">Title
+        <input class="field" name="title" maxlength="120" required value="${esc(p.title || "")}">
+      </label>
+      <label class="label">Description
+        <textarea class="field" name="description" maxlength="500" style="height:80px;padding:10px">${esc(p.description || "")}</textarea>
+      </label>
+      <label class="label">Prompt text
+        <textarea class="field" name="prompt" maxlength="12000" required style="height:150px;padding:10px">${esc(p.prompt || "")}</textarea>
+      </label>
+      <label class="label">Category
+        <input class="field" name="category" value="${esc(p.category || "Other")}">
+      </label>
+      <label class="label">Type
+        <select class="field" name="type">
+          <option value="image" ${p.type === "image" ? "selected" : ""}>Image</option>
+          <option value="video" ${p.type === "video" ? "selected" : ""}>Video</option>
+          <option value="text" ${p.type === "text" ? "selected" : ""}>Text</option>
+        </select>
+      </label>
+      <label class="label">Image URL
+        <input class="field" id="editImageUrl" name="imageUrl" type="url" placeholder="https://example.com/image.jpg" value="${esc(p.imageUrl || "")}">
+      </label>
+      <div style="margin-top:12px">
+        <div style="font-size:11px;font-weight:700;margin-bottom:8px">Image Preview</div>
+        <img id="editImagePreview" alt="Image preview" style="display:none;width:100%;max-height:260px;object-fit:contain;background:#f4f6f8;border-radius:10px">
+        <div id="editImageEmpty" style="padding:28px;text-align:center;background:#f4f6f8;border-radius:10px;color:#7b8798">No image URL</div>
+      </div>
+      <label class="label">Image source page URL
+        <input class="field" name="imageSourceUrl" type="url" placeholder="https://commons.wikimedia.org/wiki/File:..." value="${esc(p.imageSourceUrl || "")}">
+      </label>
+      <label class="label">Image author
+        <input class="field" name="imageAuthor" value="${esc(p.imageAuthor || "")}">
+      </label>
+      <label class="label">Image license
+        <input class="field" name="imageLicense" value="${esc(p.imageLicense || "")}">
+      </label>
+      <label class="label"><input type="checkbox" name="approved" ${p.approved !== false ? "checked" : ""}> Approved / published</label>
+      <p id="editError" style="color:#d94b56;font-size:12px"></p>
+    </form>`;
+
+  const imageInput = $("editImageUrl");
+  const previewImage = $("editImagePreview");
+  const empty = $("editImageEmpty");
+
+  function updateImagePreview() {
+    const value = imageInput.value.trim();
+    if (!value) {
+      previewImage.style.display = "none";
+      previewImage.removeAttribute("src");
+      empty.style.display = "block";
+      empty.textContent = "No image URL";
+      return;
+    }
+    try {
+      const url = new URL(value);
+      if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Invalid protocol');
+      previewImage.src = url.href;
+      previewImage.style.display = "block";
+      empty.style.display = "none";
+    } catch {
+      previewImage.style.display = "none";
+      empty.style.display = "block";
+      empty.textContent = "Enter a valid HTTP or HTTPS URL";
+    }
+  }
+
+  previewImage.onerror = () => {
+    previewImage.style.display = "none";
+    empty.style.display = "block";
+    empty.textContent = "Image could not load. Check the URL.";
+  };
+  imageInput.addEventListener("input", updateImagePreview);
+  updateImagePreview();
+
+  const footer = document.querySelector(".modal-foot");
+  footer.innerHTML = '<button type="button" class="btn" id="cancelEditButton">Cancel</button><button type="button" class="btn primary" id="savePromptButton">Save Changes</button>';
+  $("cancelEditButton").onclick = closeModal;
+  $("modalBg").classList.add("show");
+
+  $("savePromptButton").onclick = async () => {
+    const form = $("editPromptForm");
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const updates = {
+      title: String(data.get("title") || "").trim(),
+      description: String(data.get("description") || "").trim(),
+      prompt: String(data.get("prompt") || ""),
+      category: String(data.get("category") || "").trim() || "Other",
+      type: data.get("type"),
+      imageUrl: String(data.get("imageUrl") || "").trim(),
+      imageSourceUrl: String(data.get("imageSourceUrl") || "").trim(),
+      imageAuthor: String(data.get("imageAuthor") || "").trim(),
+      imageLicense: String(data.get("imageLicense") || "").trim(),
+      approved: form.elements.approved.checked
+    };
+    const button = $("savePromptButton");
+    const error = $("editError");
+    button.disabled = true;
+    button.textContent = "Saving...";
+    error.textContent = "";
+    try {
+      await api("/api/admin/prompts/" + encodeURIComponent(id), {
+        method: "PATCH",
+        body: JSON.stringify(updates)
+      });
+      await loadDashboard();
+      closeModal();
+      alert("Prompt updated successfully!");
+    } catch (e) {
+      error.textContent = e.message || "Failed to save changes.";
+    } finally {
+      if ($("savePromptButton")) {
+        $("savePromptButton").disabled = false;
+        $("savePromptButton").textContent = "Save Changes";
+      }
+    }
+  };
+}
+
 function renderAnalytics(){const v=totalViews(),l=totalLikes();$("aPrompts").textContent=num(allPrompts.length);$("aViews").textContent=num(v);$("aRate").textContent=(v?(l/v*100):0).toFixed(1)+"%";$("aCats").textContent=new Set(allPrompts.map(p=>p.category).filter(Boolean)).size;renderChart("analyticsChart",[...allPrompts].sort((a,b)=>Number(b.views||0)-Number(a.views||0)).slice(0,8));$("likeList").innerHTML=[...allPrompts].sort((a,b)=>Number(b.likes||0)-Number(a.likes||0)).slice(0,6).map(p=>`<div class="top-item"><div><b>${esc(p.title||"Untitled")}</b><small>${esc(p.author?.name||"Administrator")}</small></div><div class="top-num">${num(p.likes)}<small>likes</small></div></div>`).join("")}
+
 function renderActivity(){$("activityList").innerHTML=[...allPrompts].sort((a,b)=>new Date(b.createdAt||b.created_at||0)-new Date(a.createdAt||a.created_at||0)).slice(0,10).map(p=>`<div class="top-item" style="margin-bottom:9px"><div><b>${esc(p.title||"Untitled")}</b><small>Prompt published · ${esc(p.category||"Other")}</small></div><div class="top-num">${num(p.views)}<small>views</small></div></div>`).join("")||'<div class="empty"><b>No activity yet</b></div>'}
+
 function syncSearch(v){if($("promptSearch")){$("promptSearch").value=v;renderPrompts()}}
+
 function openPage(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));$(("page-"+page)).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));$("crumbPage").textContent=page[0].toUpperCase()+page.slice(1);if(page==="prompts")renderPrompts();if(page==="analytics")renderAnalytics()}
+
 function exportCSV(){const rows=[["Title","Author","Category","Type","Likes","Views","Prompt"],...allPrompts.map(p=>[p.title,p.author?.name||"Administrator",p.category,p.type,p.likes||0,p.views||0,p.prompt])];const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="uzbek-prompts.csv";a.click()}
+
 function logout(){localStorage.removeItem("up_admin_token");location.reload()}
+
 document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>openPage(b.dataset.page));
+
 if(adminToken){showApp();loadDashboard()}else showLogin();
+
 </script>
+
 </body>
+
 </html>
