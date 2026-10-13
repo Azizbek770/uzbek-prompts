@@ -15,29 +15,14 @@ const token = () => localStorage.getItem('up_token');
 ========================================================= */
 
 const categories = [
-  ['cinematic', 'Cinematic', 'Film, scenes & storytelling'],
-  ['portrait', 'Portrait', 'People & character portraits'],
-  ['anime', 'Anime', 'Anime & illustration'],
-  ['product', 'Product', 'Product photography & ads'],
-
-  ['fashion', 'Fashion', 'Clothing & editorial style'],
-  ['3d', '3D', '3D, CGI & renders'],
-  ['marketing', 'Marketing', 'Ads, copy & campaigns'],
-  ['coding', 'Coding', 'Programming & software'],
-
-  ['education', 'Education', 'Learning & teaching'],
-  ['business', 'Business', 'Business & strategy'],
-  ['social', 'Social Media', 'Posts, reels & content'],
-  ['writing', 'Writing', 'Articles, stories & editing'],
-
-  ['productivity', 'Productivity', 'Planning & workflows'],
-  ['audio', 'Audio', 'Voice, music & sound'],
-  ['food', 'Food', 'Food photography & recipes'],
-  ['travel', 'Travel', 'Travel & destination content'],
-
-  ['research', 'Research', 'Research & analysis'],
-  ['technology', 'Technology', 'Technology, AI & futuristic ideas'],
-  ['other', 'Other', 'Other useful prompts']
+  ['🎨', 'AI Image Generation', 'Create stunning AI visuals'],
+  ['⚙️', 'Technology', 'Technology, AI & futuristic ideas'],
+  ['📈', 'Business & Marketing', 'Business, branding & campaigns'],
+  ['💻', 'Web Development', 'Websites, apps & interfaces'],
+  ['📱', 'Social Media', 'Posts, reels & content'],
+  ['🏠', 'Architecture & Interior', 'Spaces, buildings & interiors'],
+  ['🧊', '3D & Digital Art', '3D, CGI & digital artwork'],
+  ['📚', 'Education', 'Learning, teaching & study']
 ];
 
 
@@ -1487,28 +1472,19 @@ function renderCategories() {
    CATEGORY FILTER
 ========================================================= */
 
-function selectCategory(c) {
+function selectCategory(category) {
+  state.category = category;
+  state.type = 'all';
 
-  state.category =
-    c;
-
-
-  document
-    .querySelectorAll('.chip')
-    .forEach(
-      x =>
-        x.classList.toggle(
-          'active',
-          x.dataset.type === state.type
-        )
+  document.querySelectorAll('.chip').forEach(button => {
+    button.classList.toggle(
+      'active',
+      button.dataset.type === 'all'
     );
-
+  });
 
   loadPrompts();
-
-  scrollToId(
-    'prompts'
-  );
+  scrollToId('prompts');
 }
 
 

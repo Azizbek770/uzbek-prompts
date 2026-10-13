@@ -1676,4 +1676,196 @@ footer {
   max-width: 100%;
 }
 
-  
+/* ========================================
+   RESPONSIVE DESIGN — ALL DEVICES
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* Categories */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.category-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.category-card:focus-visible {
+  outline: 3px solid #7650ff;
+  outline-offset: 3px;
+}
+
+/* Prompt cards */
+.prompt-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.prompt-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.prompt-card img {
+  max-width: 100%;
+}
+
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 52px);
+  }
+}
+
+/* Phones */
+@media (max-width: 700px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .category-card {
+    padding: 16px 12px;
+    border-radius: 13px;
+  }
+
+  .cat-icon {
+    margin-bottom: 14px;
+  }
+
+  .section {
+    padding-block: 42px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(25px, 6vw, 32px);
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 9vw, 46px);
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .search-shell {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .search-shell input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .prompt-grid {
+    column-count: 1;
+  }
+
+  .card-actions {
+    flex-wrap: wrap;
+  }
+
+  .cta-card {
+    padding: 26px 20px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-card {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .category-grid {
+    gap: 8px;
+  }
+
+  .category-card {
+    padding: 13px 10px;
+  }
+
+  .category-card b {
+    font-size: 13px;
+  }
+
+  .category-card span {
+    font-size: 11px;
+  }
+}  
